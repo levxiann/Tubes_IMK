@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700;900&family=Raleway:wght@300;400;500&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555 !important;
+    background-color: #ecf0f3 !important;
+}
+
+body.dark {
+    background-color: #212121 !important;
+}
+
+/* Start navbar */
+.navbar {
+    background-color: #ecf0f3 !important;
+}
+
+body.dark .navbar {
+    background-color: #212121 !important;
+}
+/* Start dark mode toogle */
+.mode {
+    box-sizing: border-box;
+}
+
+.checkbox {
+	opacity: 0;
+	position: absolute;
+}
+
+.label {
+	background-color: #111;
+	border-radius: 50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+	position: relative;
+	height: 26px;
+	width: 50px;
+	transform: scale(1.3);
+}
+
+.label .ball {
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	height: 22px;
+	width: 22px;
+	transform: translateX(0px);
+	transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+	transform: translateX(24px);
+}
+
+
+.fa-moon {
+	color: #f1c40f;
+}
+
+.fa-sun {
+	color: #f39c12;
+}
+/* End Dark mode toogle */
+
+.login {
+    width: 380px;
+    height: 350px;
+    padding: 60px 35px 35px 35px;
+    border-radius: 40px;
+    background-color: #ecf0f3 !important;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff !important;
+}
+
+body.dark .login {
+    background-color: #212121 !important;
+    box-shadow: 13px 13px 20px #1c1c1c, -13px -13px 20px #262626 !important;
+}
+
+.login-logo img{
+    width: 5rem;
+}
+
+.brand-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.8rem;
+    color: #555;
+}
+
+body.dark .brand-text {
+    color: #fff !important;
+}
+
+.login-form {
+    width: 100%;
+    padding: 10px 0px 5px 5px;
+}
+
+.login-form input {
+    border: none;
+    outline: none;
+    background: none;
+    font-style: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    padding: 10px 1.2rem 10px 1.2rem;
+}
+
+.login-form input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #555;
+    opacity: 1; /* Firefox */
+}
+  
+.login-form input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #555;
+}
+
+.login-form input::-ms-input-placeholder { /* Microsoft Edge */
+    color: #555;
+}
+
+body.dark .login-form input {
+    color: #ddd;
+}
+
+body.dark .login-form input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #ddd;
+    opacity: 1; /* Firefox */
+}
+  
+body.dark .login-form input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #ddd;
+}
+
+body.dark .login-form input::-ms-input-placeholder { /* Microsoft Edge */
+    color: #ddd;
+}
+
+.login-pass {
+    margin-bottom: 30px;
+}
+
+.login-pass i{
+    position: absolute;
+    height: 2rem;
+    margin: 14px 10px -3px 25px;
+}
+
+body.dark .login-pass i{
+    color: #fff;
+}
+
+.password {
+    margin-left: 60px;
+    border-radius: 25px;
+    box-shadow: inset 6px 6px 6px #cbced1,
+    inset -6px -6px 6px #fff;
+}
+
+body.dark .password {
+    box-shadow: inset 6px 6px 6px #1c1c1c,
+    inset -6px -6px 6px #262626;
+}
+
+.btn-login{
+    background-color: #665df5 !important;
+    color: #fff !important;
+    border-radius: 20px !important;
+    width: 70%;
+}
+
+.btn-login:hover {
+    background-color: #574bf7 !important;
+}
+
+/* Footer */
+.footer-text {
+    color: #555;
+}
+
+body.dark .footer-text{
+    color: #bbb !important;
+}
+/* End footer */
+
+
+@media (max-width: 991.98px) {
+    .brand-text {
+        font-size: 1.4rem;
+    }
+}
