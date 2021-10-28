@@ -81,8 +81,17 @@ body.dark .navbar {
 /* End Dark mode toogle */
 
 .login {
-    width: 380px;
-    height: 350px;
+    width: 400px;
+    height: 500px;
+    padding: 60px 35px 35px 35px;
+    border-radius: 40px;
+    background-color: #ecf0f3 !important;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff !important;
+}
+
+.forpass {
+    width: 600px;
+    height: 500px;
     padding: 60px 35px 35px 35px;
     border-radius: 40px;
     background-color: #ecf0f3 !important;
@@ -168,6 +177,13 @@ body.dark .login-pass i{
 }
 
 .password {
+    margin-left: 60px;
+    border-radius: 25px;
+    box-shadow: inset 6px 6px 6px #cbced1,
+    inset -6px -6px 6px #fff;
+}
+
+.name {
     margin-left: 60px;
     border-radius: 25px;
     box-shadow: inset 6px 6px 6px #cbced1,
