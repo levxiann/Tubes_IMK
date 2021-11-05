@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link py-3 border-bottom" title="Produk" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{url('/stock')}}" class="nav-link py-3 border-bottom" title="Produk" data-bs-toggle="tooltip" data-bs-placement="right">
                 <span class="far fa-cubes"></span>
                 </a>
             </li>

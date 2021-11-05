@@ -25,6 +25,7 @@ class StockSeeder extends Seeder
                 'description' => $faker->text(rand(100, 200)),
                 'price' => rand(10000, 20000),
                 'wholesale_price' => rand(5000, 10000),
+                'wholesale_quantity' => rand(100, 200),
                 'stock' => rand(50, 200),
                 'image' => 'nophoto.jpg',
                 'created_at' => now(),
