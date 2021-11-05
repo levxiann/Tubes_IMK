@@ -87,3 +87,9 @@ main {
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+
+#stock {
+  height: 60vh;
+  max-height: 60vh;
+  overflow-y: scroll;
+}

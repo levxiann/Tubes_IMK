@@ -11,7 +11,27 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
-@yield('content')    
+    <nav class="navbar fixed-top">
+        <div class="container-fluid">
+            <div class="mode ms-auto">
+                <input type="checkbox" class="checkbox" id="chk" />
+                <label class="label" for="chk">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <div class="ball"></div>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    @yield('content')    
+
+    
+    <nav class="footer fixed-bottom footer-light text-center pt-2 pb-2">
+        <span class="footer-text">
+            Copyright &copy; 2021 Kelompok IMK
+        </span>
+    </nav>
 
 <script>
     const chk = document.getElementById('chk');

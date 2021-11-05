@@ -15,11 +15,12 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('receipt_id');
+            $table->unsignedBigInteger('payment_id');
+            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('stock_id');
             $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('quantity');
-            $table->unsignedInteger('status');
+            $table->unsignedDouble('price')->nullable(); // Total harga setelah diskon
             $table->timestamps();
         });
     }
