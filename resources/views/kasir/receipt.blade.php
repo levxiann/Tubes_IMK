@@ -64,7 +64,21 @@
                                 }
                                 else 
                                 {
-                                    $price = $receipt->stock->price * $receipt->quantity;
+                                    if($receipt->stock->wholesale_price != NULL && $receipt->stock->wholesale_quantity != NULL)
+                                    {
+                                        if($receipt->quantity >= $receipt->stock->wholesale_quantity)
+                                        {
+                                            $price =  $receipt->stock->wholesale_price * $receipt->quantity;
+                                        }
+                                        else 
+                                        {
+                                            $price = $receipt->stock->price * $receipt->quantity;
+                                        }
+                                    }
+                                    else 
+                                    {
+                                        $price = $receipt->stock->price * $receipt->quantity;
+                                    }
                                 }
 
                                 $total += $price;
