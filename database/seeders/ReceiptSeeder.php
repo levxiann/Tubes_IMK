@@ -25,7 +25,8 @@ class ReceiptSeeder extends Seeder
                 'quantity' => rand(10, 20),
                 'price' => 100000,
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
+                'status' => '1'
             ];
         }
 
