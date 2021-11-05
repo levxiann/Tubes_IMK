@@ -4,8 +4,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\DiscountController;
-use App\Models\Discount;
-use App\Models\Receipt;
 
 use Illuminate\Support\Facades\Route;
 
