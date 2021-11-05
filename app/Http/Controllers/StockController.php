@@ -29,7 +29,7 @@ class StockController extends Controller
             ['id', '!=', Null], ['name', '!=', Null],
             [function ($query) use ($request){
                 if(($term = $request->term)){
-                    $query->orWhere('id', 'LIKE', '%'.$term.'%')->get();
+                    $query->orWhere('id', $term)->get();
                     $query->orWhere('name', 'LIKE', '%'.$term.'%')->get();
                 }
             }]
@@ -254,6 +254,13 @@ class StockController extends Controller
         }
 
         session()->put('menu','product');
+
+        $stock = Stock::findOrFail($id);
+
+        if($stock->receipt->count() > 0)
+        {
+            return redirect('stock');
+        }
 
         Stock::destroy($id);
 

@@ -132,6 +132,13 @@ class HomeController extends Controller
 
     public function destroy($id)
     {
+        $kasir = User::findOrFail($id);
+
+        if($kasir->level != 1 && $kasir->payments->count() > 0)
+        {
+            return redirect('/kasir');
+        }
+
         User::destroy($id);
 
         return redirect('/kasir')->with('status', 'Akun berhasil dihapus');
