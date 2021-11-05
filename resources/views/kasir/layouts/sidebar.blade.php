@@ -11,7 +11,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link py-3 border-bottom @if(session()->has('menu') && session()->get('menu') == 'discount') bg-light @else text-white @endif" title="Diskon" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{url('/discount')}}" class="nav-link py-3 border-bottom @if(session()->has('menu') && session()->get('menu') == 'discount') bg-light @else text-white @endif" title="Diskon" data-bs-toggle="tooltip" data-bs-placement="right">
                     <span class="far fa-percent"></span>
                 </a>
             </li>

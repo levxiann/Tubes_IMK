@@ -3,7 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\DiscountController;
 use App\Models\Receipt;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +50,14 @@ Route::post('/pay', [ReceiptController::class, 'pay']);
 Route::get('/invoice', [ReceiptController::class, 'invoice']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/discount', [DiscountController::class, 'index'])->name('discount');
+
+Route::patch('/discount/update', [DiscountController::class, 'update']);
+
+Route::post('/discount/getDiscountDetail', [DiscountController::class, 'getDetail']);
+
+Route::delete('/discount/delete/{id}', [DiscountController::class, 'destroy']);
 
 Route::get('/stock', [StockController::class, 'index']);
 
@@ -102,3 +112,4 @@ Route::get('/register', function(){
 
     return Redirect::to('/login');
 })->name('register');
+
