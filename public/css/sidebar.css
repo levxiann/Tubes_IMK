@@ -14,7 +14,7 @@ main {
   height: -webkit-fill-available;
   max-height: 100vh;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .b-example-divider {
@@ -87,3 +87,19 @@ main {
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+
+.discount-circle{
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 50%;
+  font-size: 13px;
+  color: white;
+  text-align: center;
+  background: red;
+  display:inline-block;
+}
+
+.discount-title{
+  display:inline-block;
+}

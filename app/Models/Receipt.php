@@ -12,7 +12,8 @@ class Receipt extends Model
     protected $fillable = [
         'receipt_id',
         'stock_id',
-        'quantity'
+        'quantity',
+        'status'
     ];
 
     public function stock()

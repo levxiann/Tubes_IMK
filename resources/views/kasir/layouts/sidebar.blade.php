@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link py-3 border-bottom" title="Diskon" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="/discount" class="nav-link py-3 border-bottom" title="Diskon" data-bs-toggle="tooltip" data-bs-placement="right">
                     <span class="far fa-percent"></span>
                 </a>
             </li>

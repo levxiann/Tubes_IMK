@@ -23,6 +23,7 @@ class ReceiptSeeder extends Seeder
                 'receipt_id' => rand(1,2),
                 'stock_id' => rand(1, 10),
                 'quantity' => rand(10, 20),
+                'status' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ];

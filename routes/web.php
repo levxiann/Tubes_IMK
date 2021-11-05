@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DiscountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,11 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/discount', [DiscountController::class, 'index'])->name('discount');
+Route::patch('/discount/update', [DiscountController::class, 'update']);
+Route::post('/discount/getDiscountDetail', [DiscountController::class, 'getDetail']);
+Route::delete('/discount/delete/{id}', [DiscountController::class, 'destroy']);
+
 Route::get('/logout',function(){
 
     auth()->logout();
@@ -43,3 +49,4 @@ Route::get('/register', function(){
 
     return Redirect::to('/login');
 })->name('register');
+
