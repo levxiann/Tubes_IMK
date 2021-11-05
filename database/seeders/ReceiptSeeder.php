@@ -20,9 +20,10 @@ class ReceiptSeeder extends Seeder
         for($i = 1 ; $i <= 10 ; $i++)
         {
             $receipts[] = [
-                'receipt_id' => rand(1,2),
+                'payment_id' => rand(1,2),
                 'stock_id' => rand(1, 10),
                 'quantity' => rand(10, 20),
+                'price' => 100000,
                 'created_at' => now(),
                 'updated_at' => now()
             ];

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReceiptController;
+use App\Models\Receipt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,28 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/order', [ReceiptController::class, 'index']);
+
+Route::get('/order/search', [ReceiptController::class, 'search']);
+
+Route::post('/order/getOrder', [ReceiptController::class, 'getOrder']);
+
+Route::post('/order/store', [ReceiptController::class, 'store']);
+
+Route::get('/receipt', [ReceiptController::class, 'receipt']);
+
+Route::post('/order/getReceiptOrder', [ReceiptController::class, 'getReceiptOrder']);
+
+Route::patch('/order/update', [ReceiptController::class, 'update']);
+
+Route::delete('/order/delete/{id}', [ReceiptController::class, 'destroy']);
+
+Route::delete('/order/cancel/{id}', [ReceiptController::class, 'cancel']);
+
+Route::post('/pay', [ReceiptController::class, 'pay']);
+
+Route::get('/invoice', [ReceiptController::class, 'invoice']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

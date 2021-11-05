@@ -18,6 +18,8 @@ class Stock extends Model
         'image'
     ];
 
+    protected $table = 'stocks';
+
     public function discount()
     {
         return $this->hasOne(Discount::class);
