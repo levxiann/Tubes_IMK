@@ -21,6 +21,13 @@
     <div class="row"><br><b style="font-size: x-large;">DISCOUNT<b><br></div><hr>
     <div class="row mb-3">
         <form class="d-flex mt-3" action="{{url('/discount/search')}}" method="GET">
+            <a href="{{url('/discount')}}" class="me-2">
+                <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button" title="Refresh page">
+                        <span class="fas fa-sync-alt"></span>
+                    </button>
+                </span>
+            </a>
             <input id="keyword" class="form-control me-2 mb-2 mr-2" type="search" placeholder="Cari Kode Barang atau Nama Barang" name="keyword" aria-label="Search" style="background-color : lightblue" value="<?php echo (isset($_GET['keyword'])) ? $_GET['keyword'] : ''; ?>">
             <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
         </form>

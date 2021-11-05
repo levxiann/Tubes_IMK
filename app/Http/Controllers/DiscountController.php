@@ -58,7 +58,12 @@ class DiscountController extends Controller
             'percentage' => 'required|integer|min:1|max:100'
         ]);
 
-        Stock::findOrFail($request->id);
+        $stock = Stock::findOrFail($request->id);
+
+        if($stock->discount != NULL)
+        {
+            return redirect('/discount');
+        }
 
         Discount::create([
             'stock_id' => $request->id,
