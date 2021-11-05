@@ -100,11 +100,16 @@
                         <td><a href="{{url('stock/stockrusak/'.$stock->id) }}" class="btn btn-sm btn-flat btn-warning"><span class="far fa-minus"></span> Stok Rusak</a></td>
                         <td><a href="{{url('stock/editproduct/'.$stock->id) }}" class="btn btn-sm btn-flat btn-success"><span class="far fa-edit"></span> Edit</a></td>
                         <td>
+                        @if ($stock->receipt->count() < 1)
                         <form method="POST" action="{{url('stock/'.$stock->id) }}" style="display: inline-block;">
                           @csrf
                           @method('DELETE')
                           <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Hapus Data?')"><span class="far fa-trash-alt"></span> Hapus</button>
-                      </form>
+                        </form>
+                        @else
+                          <button type="button" class="btn btn-sm btn-danger" disabled><span class="far fa-trash-alt"></span> Hapus</button>
+                        @endif
+                        
                     </td>
                     </tr>
                     @endforeach
