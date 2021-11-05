@@ -15,12 +15,6 @@
 <body class="bg-light">
 @yield('content')    
 
-<nav class="footer fixed-bottom footer-light text-center pt-2 pb-2">
-    <span class="footer-text">
-        Copyright &copy; 2021 Kelompok IMK
-    </span>
-</nav>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

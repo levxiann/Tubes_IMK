@@ -6,7 +6,7 @@
     {{-- End Sidebar --}}
     
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" style="width: 100%">
+      <div class="content-wrapper mt-3" style="width: 100%">
         <!-- Content Header (Page header) -->
         <div class="content-header">
           <div class="container-fluid">
@@ -34,18 +34,19 @@
             <div class="card mx-auto pull-right">
               <div class="card-header">
                 <p>
-                  <a href="{{url('/stock/newproduct')}}" class="btn btn-primary">Tambah Produk</a>
+                  <a href="{{url('/stock/newproduct')}}" class="btn btn-primary"><span class="far fa-plus"></span> Tambah Produk</a>
+                  <a href="{{url('/stock/print')}}" target="__blank" class="btn btn-secondary"><span class="far fa-print"></span> Cetak Produk</a>
                 </p>
                 <!--Searching-->
                 <form action="{{url('/stock')}}" method="GET" role="search">
                   <div class="input-group">
-                      <span class="input-group-btn mr-5 mt-1">
+                      <span class="input-group-btn mr-5 mt-1 me-3">
                           <button class="btn btn-info" type="submit" title="Search projects">
                               <span class="fas fa-search"></span>
                           </button>
                       </span>
                       <input type="text" class="form-control mr-2" name="term" placeholder="Cari..." id="term">
-                      <a href="{{url('/stock')}}" class=" mt-1">
+                      <a href="{{url('/stock')}}" class=" mt-1 ms-2">
                           <span class="input-group-btn">
                               <button class="btn btn-danger" type="button" title="Refresh page">
                                   <span class="fas fa-sync-alt"></span>
@@ -55,10 +56,10 @@
                   </div>
               </form>
               </div>
-              <div class="card-body">
-                <table class="table w-100 table-bordered table-hover" id="stok">
+              <div class="card-body" id="stock">
+                <table class="table w-100 table-bordered table-hover text-center table-striped" id="stok">
                   <thead style="text-align: center">
-                    <tr>
+                    <tr class="align-middle">
                       <th>ID</th>
                       <th>Gambar</th>
                       <th>Nama</th>
@@ -74,21 +75,35 @@
                     @foreach($stocks as $stock)
                     <tr>
                         <td>{{$stock->id}}</td>
-                        <td><img src="{{asset('storage/images/'.$stock->image)}}" height="100" width="100"></td>
+                        <td><img src="{{asset('/images/'.$stock->image)}}" height="100" width="100"></td>
                         <td>{{$stock->name}}</td>
                         <td>{{$stock->description}}</td>
-                        <td>Rp{{$stock->price}}</td>
-                        <td>Rp{{$stock->wholesale_price}}</td>
-                        <td>{{$stock->wholesale_quantity}}</td>
+                        <td>
+                          @if ($stock->discount != NULL)
+                            <del>Rp {{$stock->price}}</del> <b class="text-danger">{{$stock->discount->percentage}}%</b> => Rp {{((100 - $stock->discount->percentage) * $stock->price)/100}}
+                          @else
+                            Rp {{$stock->price}}
+                          @endif
+                        </td>
+                        <td>
+                          @if ($stock->wholesale_price != NULL)
+                            Rp {{$stock->wholesale_price}}
+                          @endif
+                        </td>
+                        <td>
+                          @if ($stock->wholesale_quantity != NULL)
+                            {{$stock->wholesale_quantity}}
+                          @endif
+                        </td>
                         <td>{{$stock->stock}}</td>
-                        <td><a href="{{url('stock/addstock/'.$stock->id) }}" class="btn btn-sm btn-flat btn-primary">Tambah Stok</a></td>
-                        <td><a href="{{url('stock/stockrusak/'.$stock->id) }}" class="btn btn-sm btn-flat btn-warning">Stok Rusak</a></td>
-                        <td><a href="{{url('stock/editproduct/'.$stock->id) }}" class="btn btn-sm btn-flat btn-success">Edit</a></td>
+                        <td><a href="{{url('stock/addstock/'.$stock->id) }}" class="btn btn-sm btn-flat btn-primary"><span class="far fa-plus"></span> Tambah Stok</a></td>
+                        <td><a href="{{url('stock/stockrusak/'.$stock->id) }}" class="btn btn-sm btn-flat btn-warning"><span class="far fa-minus"></span> Stok Rusak</a></td>
+                        <td><a href="{{url('stock/editproduct/'.$stock->id) }}" class="btn btn-sm btn-flat btn-success"><span class="far fa-edit"></span> Edit</a></td>
                         <td>
                         <form method="POST" action="{{url('stock/'.$stock->id) }}" style="display: inline-block;">
                           @csrf
                           @method('DELETE')
-                          <button class="btn btn-sm btn-danger" onclick="return confirm('Hapus Data?')">Hapus</button>
+                          <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Hapus Data?')"><span class="far fa-trash-alt"></span> Hapus</button>
                       </form>
                     </td>
                     </tr>
@@ -100,7 +115,7 @@
           </div><!-- /.container-fluid -->
           
           <!--Pagination-->
-          <div class="d-flex justify-content-center">
+          <div class="d-flex mt-3 justify-content-end me-2">
             {!! $stocks->links() !!}
           </div>
           

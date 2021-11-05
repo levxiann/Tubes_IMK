@@ -260,7 +260,7 @@ class ReceiptController extends Controller
 
     public function invoice()
     {
-        if(Auth::user()->name != "Admin")
+        if(Auth::user()->level != 1)
         {
             return redirect('order');
         }
