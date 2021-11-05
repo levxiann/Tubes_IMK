@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\DiscountController;
+use App\Models\Discount;
 use App\Models\Receipt;
 
 use Illuminate\Support\Facades\Route;
@@ -53,9 +54,15 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/discount', [DiscountController::class, 'index'])->name('discount');
 
+Route::get('/discount/search', [DiscountController::class, 'search']);
+
 Route::patch('/discount/update', [DiscountController::class, 'update']);
 
 Route::post('/discount/getDiscountDetail', [DiscountController::class, 'getDetail']);
+
+Route::post('/discount/store', [DiscountController::class, 'store']);
+
+Route::post('/discount/getProductDetail', [DiscountController::class, 'getProductDetail']);
 
 Route::delete('/discount/delete/{id}', [DiscountController::class, 'destroy']);
 
@@ -91,7 +98,7 @@ Route::patch('/kasir/update', [HomeController::class, 'update']);
 
 Route::post('/kasir/store', [HomeController::class, 'store']);
 
-Route::delete('/kasir/delete/{id}', [HomeController::class, 'destroy']);
+Route::delete('/kasir/delete/{id}', [HomeController::class, 'destroy']); 
 
 Route::get('/logout',function(){
 
