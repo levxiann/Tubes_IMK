@@ -14,9 +14,12 @@ class Stock extends Model
         'description',
         'price',
         'wholesale_price',
+        'wholesale_quantity',
         'stock',
         'image'
     ];
+
+    protected $table = 'stocks';
 
     public function discount()
     {
