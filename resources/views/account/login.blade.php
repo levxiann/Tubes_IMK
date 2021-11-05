@@ -1,19 +1,6 @@
 @extends('account.layouts.main')
 
 @section('content')
-<nav class="navbar fixed-top">
-    <div class="container-fluid">
-        <div class="mode ms-auto">
-            <input type="checkbox" class="checkbox" id="chk" />
-            <label class="label" for="chk">
-                <i class="fas fa-moon"></i>
-                <i class="fas fa-sun"></i>
-                <div class="ball"></div>
-            </label>
-        </div>
-    </div>
-</nav>
-
 <div class="login text-center">
     @if (session('status'))
         <div class="alert alert-success" role="alert">
@@ -58,10 +45,4 @@
         </form>
     </div>
 </div>
-
-<nav class="footer fixed-bottom footer-light text-center pt-2 pb-2">
-    <span class="footer-text">
-        Copyright &copy; 2021 Kelompok IMK
-    </span>
-</nav>
 @endsection

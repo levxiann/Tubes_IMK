@@ -9,14 +9,22 @@ class Receipt extends Model
 {
     use HasFactory;
 
+    protected $table = 'receipts';
+
     protected $fillable = [
-        'receipt_id',
+        'payment_id',
         'stock_id',
-        'quantity'
+        'quantity',
+        'price'
     ];
 
     public function stock()
     {
         return $this->belongsTo(Stock::class);
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
     }
 }

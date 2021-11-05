@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        session()->put('menu','dashboard');
+
         return view('kasir.dashboard');
     }
 }

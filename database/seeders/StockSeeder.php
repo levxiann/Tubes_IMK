@@ -23,10 +23,11 @@ class StockSeeder extends Seeder
             $stocks[] = [
                 'name' => $faker->firstName(),
                 'description' => $faker->text(rand(100, 200)),
-                'price' => rand(10000, 20000),
-                'wholesale_price' => rand(5000, 10000),
+                'price' => 10000,
+                'wholesale_price' => 8000,
+                'wholesale_quantity' => 5,
                 'stock' => rand(50, 200),
-                'image' => 'nophoto.jpg',
+                'image' => 'nophoto.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ];

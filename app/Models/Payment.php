@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Discount extends Model
+class Payment extends Model
 {
     use HasFactory;
 
-    protected $table = 'discounts';
+    protected $table = 'payments';
 
     protected $fillable = [
-        'stock_id',
-        'percentage'
+        'user_id',
+        'total',
+        'status'
     ];
 
-    public function stock()
+    public function receipts()
     {
-        return $this->belongsTo(Stock::class);
+        return $this->hasMany(Receipt::class);
     }
 }
