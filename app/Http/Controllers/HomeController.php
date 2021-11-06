@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('active');
     }
 
     /**
@@ -109,6 +110,7 @@ class HomeController extends Controller
         $user = User::findOrFail($request->id);
 
         $request->validate([
+            'id' => 'required',
             'name' => 'required|string|max:255|unique:users,name,'.$user->id,
             'email' => 'required|string|max:255|email:rfc,dns|unique:users,email,'.$user->id,
         ]);
@@ -132,6 +134,13 @@ class HomeController extends Controller
 
     public function destroy($id)
     {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','kasir');
+
         $kasir = User::findOrFail($id);
 
         if($kasir->level != 1 && $kasir->payments->count() > 0)
@@ -142,5 +151,25 @@ class HomeController extends Controller
         User::destroy($id);
 
         return redirect('/kasir')->with('status', 'Akun berhasil dihapus');
+    }
+
+    public function inactivate($id)
+    {
+        User::where('id', $id)
+        ->update([
+            'status' => 0
+        ]);
+
+        return redirect('/kasir')->with('status', 'Akun berhasil dinonaktifkan');
+    }
+
+    public function activate($id)
+    {
+        User::where('id', $id)
+        ->update([
+            'status' => 1
+        ]);
+
+        return redirect('/kasir')->with('status', 'Akun berhasil diaktifkan');
     }
 }

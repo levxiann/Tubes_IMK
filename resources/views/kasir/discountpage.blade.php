@@ -28,7 +28,7 @@
                     </button>
                 </span>
             </a>
-            <input id="keyword" class="form-control me-2 mb-2 mr-2" type="search" placeholder="Cari Kode Barang atau Nama Barang" name="keyword" aria-label="Search" style="background-color : lightblue" value="<?php echo (isset($_GET['keyword'])) ? $_GET['keyword'] : ''; ?>">
+            <input id="keyword" class="form-control me-2 mb-2 mr-2" type="search" placeholder="Cari Nama Barang" name="keyword" aria-label="Search" style="background-color : lightblue" value="<?php echo (isset($_GET['keyword'])) ? $_GET['keyword'] : ''; ?>">
             <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
         </form>
     </div>

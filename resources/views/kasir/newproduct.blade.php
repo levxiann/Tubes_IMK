@@ -44,7 +44,7 @@
     </div>
     <div class="form-group mb-3">
         <label for="wholesale_price">Harga Grosir</label>
-        <input type="number" class="form-control @error('wholesale_price') is-invalid @enderror" id="wholesale_price" placeholder="Masukkan harga grosir" name="wholesale_price" value="{{old('wholesale_price')}}">
+        <input type="number" class="form-control @error('wholesale_price') is-invalid @enderror" id="wholesale_price" placeholder="Masukkan harga grosir (0 jika tidak ada)" name="wholesale_price" value="{{old('wholesale_price')}}">
         @error('wholesale_price')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
     </div>
     <div class="form-group mb-3">
         <label for="wholesale_quantity">Satuan Grosir</label>
-        <input type="number" class="form-control @error('wholesale_quantity') is-invalid @enderror" id="wholesale_quantity" placeholder="Masukkan satuan grosir" name="wholesale_quantity" value="{{old('wholesale_quantity')}}">
+        <input type="number" class="form-control @error('wholesale_quantity') is-invalid @enderror" id="wholesale_quantity" placeholder="Masukkan satuan grosir (0 jika tidak ada)" name="wholesale_quantity" value="{{old('wholesale_quantity')}}">
         @error('wholesale_quantity')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

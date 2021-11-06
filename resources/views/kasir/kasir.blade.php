@@ -46,11 +46,30 @@
             <ul class="list-group mt-2">
                 @foreach ($kasirs as $kasir)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{$kasir->name}} - {{$kasir->email}}
-                    @if ($kasir->level == Auth::user()->level)
-                        (me)
-                    @endif
+                    <div class="col-5 justify-content-start">
+                        {{$kasir->name}} - {{$kasir->email}}
+                        @if ($kasir->level == Auth::user()->level)
+                            <i class="text-primary">(saya)</i>
+                        @elseif ($kasir->level != Auth::user()->level && $kasir->status == 0)
+                            <i class="text-danger">(tidak aktif)</i>
+                        @elseif ($kasir->level != Auth::user()->level && $kasir->status == 1)
+                            <i class="text-success">(aktif)</i>
+                        @endif
+                    </div>
                     <div class="col-5">
+                        @if ($kasir->level != 1 && $kasir->status == 0)
+                            <form action="{{url('/kasir/activate/'.$kasir->id)}}" method="POST" class="ms-2 text-photo float-end" style="display: inline-block">
+                                @csrf
+                                @method('patch')
+                                    <button type="submit" class="btn btn-success"><span class="far fa-lock-open" style="background: transparent"></span> Aktifkan</button>
+                            </form>
+                        @elseif ($kasir->level != 1 && $kasir->status == 1)
+                        <form action="{{url('/kasir/inactivate/'.$kasir->id)}}" method="POST" class="ms-2 text-photo float-end" style="display: inline-block">
+                            @csrf
+                            @method('patch')
+                                <button type="submit" class="btn btn-secondary"><span class="far fa-lock" style="background: transparent"></span> Non Aktifkan</button>
+                        </form>
+                        @endif
                         <button type="button" class="btn btn-warning ms-3 editKasir float-end" data-bs-toggle="modal" data-bs-target="#editKasirModal" data-id="{{$kasir->id}}" style="display: inline-block">
                             <span class="far fa-edit" style="background: transparent"></span> Edit
                         </button>

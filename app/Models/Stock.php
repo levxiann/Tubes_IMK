@@ -30,4 +30,9 @@ class Stock extends Model
     {
         return $this->hasMany(Receipt::class);
     }
+
+    public function instocks()
+    {
+        return $this->hasMany(Instock::class);
+    }
 }
