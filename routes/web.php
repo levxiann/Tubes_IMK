@@ -98,6 +98,14 @@ Route::post('/kasir/store', [HomeController::class, 'store']);
 
 Route::delete('/kasir/delete/{id}', [HomeController::class, 'destroy']); 
 
+Route::patch('/kasir/activate/{id}', [HomeController::class, 'activate']);
+
+Route::patch('/kasir/inactivate/{id}', [HomeController::class, 'inactivate']);
+
+Route::get('/instock', [StockController::class, 'instock']);
+
+Route::get('/instock/print', [StockController::class, 'printInstock']);
+
 Route::get('/logout',function(){
 
     auth()->logout();

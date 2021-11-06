@@ -49,7 +49,7 @@
     </div>
     <div class="form-group mb-3">
         <label for="wholesale_price">Harga Grosir</label>
-        <input type="number" class="form-control @error('wholesale_price') is-invalid @enderror" id="wholesale_price" placeholder="Masukkan harga grosir" name="wholesale_price" value="@php echo ($stocks->wholesale_price == NULL) ? 0 : $stocks->wholesale_price;  @endphp">
+        <input type="number" class="form-control @error('wholesale_price') is-invalid @enderror" id="wholesale_price" placeholder="Masukkan harga grosir (0 jika tidak ada)" name="wholesale_price" value="@php echo ($stocks->wholesale_price == NULL) ? 0 : $stocks->wholesale_price;  @endphp">
         @error('wholesale_price')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
     </div>
     <div class="form-group mb-3">
         <label for="wholesale_quantity">Satuan Grosir</label>
-        <input type="number" class="form-control @error('wholesale_quantity') is-invalid @enderror" id="wholesale_quantity" placeholder="Masukkan satuan grosir" name="wholesale_quantity" value="@php echo ($stocks->wholesale_quantity == NULL) ? 0 : $stocks->wholesale_quantity;  @endphp">
+        <input type="number" class="form-control @error('wholesale_quantity') is-invalid @enderror" id="wholesale_quantity" placeholder="Masukkan satuan grosir (0 jika tidak ada)" name="wholesale_quantity" value="@php echo ($stocks->wholesale_quantity == NULL) ? 0 : $stocks->wholesale_quantity;  @endphp">
         @error('wholesale_quantity')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

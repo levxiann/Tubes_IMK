@@ -14,6 +14,7 @@ class ReceiptController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('active');
     }
 
     public function index()
@@ -224,6 +225,7 @@ class ReceiptController extends Controller
             }
 
             $request->validate([
+                'id' => 'required',
                 'pay' => 'required|integer|min:'.$total
             ]);
 

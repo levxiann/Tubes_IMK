@@ -11,6 +11,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{url('/instock')}}" class="nav-link py-3 border-bottom @if(session()->has('menu') && session()->get('menu') == 'instock') bg-light @else text-white @endif" title="Produk Masuk" data-bs-toggle="tooltip" data-bs-placement="right">
+                <span class="far fa-download"></span>
+                </a>
+            </li>
+            <li>
                 <a href="{{url('/discount')}}" class="nav-link py-3 border-bottom @if(session()->has('menu') && session()->get('menu') == 'discount') bg-light @else text-white @endif" title="Diskon" data-bs-toggle="tooltip" data-bs-placement="right">
                     <span class="far fa-percent"></span>
                 </a>
@@ -32,6 +37,15 @@
                 <a href="{{route('logout')}}" class="nav-link py-3 border-bottom text-white" title="Keluar" data-bs-toggle="tooltip" data-bs-placement="right">
                     <span class="far fa-sign-out"></span>
                 </a>
+            </li>
+            <li>
+                <div class="nav-link py-3"></div>
+            </li>
+            <li>
+                <div class="nav-link py-3"></div>
+            </li>
+            <li>
+                <div class="nav-link py-3"></div>
             </li>
             <li>
                 <div class="nav-link py-3"></div>

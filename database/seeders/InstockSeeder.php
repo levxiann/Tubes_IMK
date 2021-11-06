@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DiscountSeeder extends Seeder
+class InstockSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,19 +14,18 @@ class DiscountSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('discounts')->truncate();
-        $discounts = [];
+        $instocks = [];
 
-        for($i = 10 ; $i >= 1 ; $i--)
+        for($i = 1 ; $i <= 10 ; $i++)
         {
-            $discounts[] = [
+            $instocks[] = [
                 'stock_id' => $i,
-                'percentage' => rand(10, 30),
+                'stock' => 100,
                 'created_at' => now(),
                 'updated_at' => now()
             ];
         }
 
-        DB::table('discounts')->insert($discounts);
+        DB::table('instocks')->insert($instocks);
     }
 }

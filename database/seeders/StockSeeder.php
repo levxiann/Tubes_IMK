@@ -26,7 +26,7 @@ class StockSeeder extends Seeder
                 'price' => 10000,
                 'wholesale_price' => 8000,
                 'wholesale_quantity' => 5,
-                'stock' => rand(50, 200),
+                'stock' => 100,
                 'image' => 'nophoto.png',
                 'created_at' => now(),
                 'updated_at' => now()

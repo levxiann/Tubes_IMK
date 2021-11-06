@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Instock;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +16,7 @@ class StockController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('active');
     }
 
     public function index(Request $request)
@@ -105,6 +108,13 @@ class StockController extends Controller
             'stock' => $request->stock,
             'image' => $newname
         ]);
+
+        $stock = Stock::latest()->first();
+
+        Instock::create([
+            'stock_id' => $stock->id,
+            'stock' => $request->stock
+        ]);
          
         return redirect('/stock')->with('success','Produk baru berhasil ditambah!');
     }
@@ -139,6 +149,11 @@ class StockController extends Controller
         $stock = Stock::findOrFail($id);
         $stock->stock = $stock->stock + $request->stock;
         $stock->save();
+
+        Instock::create([
+            'stock_id' => $id,
+            'stock' => $request->stock
+        ]);
 
         return redirect('stock')->with('success','Stok berhasil ditambah!');
     }
@@ -294,4 +309,27 @@ class StockController extends Controller
      
         return $pdf->stream('produk.'.date('d-M-Y').'.pdf');
     }    
+
+    public function instock()
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','instock');
+
+        $instocks = Instock::orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('kasir.instock', compact('instocks'));
+    }
+
+    public function printInstock()
+    {
+        $instocks = Instock::all();
+
+        $pdf = PDF::loadView('kasir.cetakInstock', compact('instocks'));
+     
+        return $pdf->stream('produk_masuk.'.date('d-M-Y').'.pdf');
+    }
 }
