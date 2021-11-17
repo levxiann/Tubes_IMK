@@ -22,6 +22,7 @@ class CreateStocksTable extends Migration
             $table->unsignedBigInteger('wholesale_quantity')->nullable();
             $table->unsignedInteger('stock');
             $table->string('image')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

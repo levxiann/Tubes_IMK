@@ -35,6 +35,8 @@ class ReceiptController extends Controller
     {
         session()->put('menu','receipt');
 
+        session()->put('keyword', $request->keyword);
+
         $payment = Payment::where('status', 0)->where('user_id', Auth::user()->id)->first();
         $count = 0;
         if($payment != NULL)
@@ -42,7 +44,13 @@ class ReceiptController extends Controller
             $count = Payment::find($payment->id)->receipts()->count();
         }
 
-        $stocks = Stock::where('name', 'like', "%". $request->keyword ."%")->orWhere('id', $request->keyword)->paginate(8);
+        $keyword = $request->keyword;
+
+        $stocks = Stock::where('status', 1)
+                    ->where(function($q){
+                        $keyword = session('keyword');
+                        $q->where('name', 'like', "%". $keyword ."%")->orWhere('id', $keyword);
+                    })->paginate(8);
 
         $stocks->appends(['keyword' => $request->keyword]);
 
@@ -59,6 +67,11 @@ class ReceiptController extends Controller
     public function store(Request $request)
     {
         $stock = Stock::findOrFail($request->id);
+
+        if($stock->status == 0)
+        {
+            return redirect('/order');
+        }
 
         $request->validate([
             'id' => 'required',
@@ -115,6 +128,25 @@ class ReceiptController extends Controller
             return redirect('/order');
         }
 
+        $count = $payment->receipts->count();
+
+        foreach($payment->receipts as $receipt)
+        {
+            if($receipt->stock->status == 0)
+            {
+                if($count == 1)
+                {
+                    Payment::destroy($payment->id);
+
+                    return redirect('/order');
+                }
+                else
+                {
+                    Receipt::destroy($receipt->id);                
+                }
+            }
+        }
+
         $receipts = Receipt::where('payment_id', $payment->id)->get();
 
         return view('kasir.receipt', compact('receipts', 'payment'));
@@ -124,6 +156,12 @@ class ReceiptController extends Controller
     {
         $receipt = Receipt::findOrFail($request->id);
         $stock = Stock::findOrFail($receipt->stock->id);
+
+        if($stock->status == 0)
+        {
+            Receipt::destroy($request->id);
+            return redirect('/receipt');
+        }
 
         $request->validate([
             'id' => 'required',
@@ -178,6 +216,10 @@ class ReceiptController extends Controller
                 if($receipt->quantity > $receipt->stock->stock)
                 {
                     return redirect('/receipt')->with('status', 'Orderan melebihi kapasitas');
+                }
+                elseif($receipt->stock->status == 0)
+                {
+                    return redirect('/receipt');
                 }
                 if($receipt->stock->discount != NULL)
                 {

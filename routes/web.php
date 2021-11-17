@@ -4,7 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\DiscountController;
-
+use App\Models\Stock;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,6 +84,10 @@ Route::put('/stock/editproduct/{id}', [StockController::class, 'update']);
 
 Route::delete('/stock/{id}',[StockController::class, 'destroy']);
 
+Route::post('/stock/close/{id}', [StockController::class, 'close']);
+
+Route::post('/stock/open/{id}', [StockController::class, 'open']);
+
 Route::get('/stock/print', [StockController::class, 'print']);
 
 Route::get('/kasir', [HomeController::class, 'kasir']);
@@ -103,6 +107,14 @@ Route::patch('/kasir/activate/{id}', [HomeController::class, 'activate']);
 Route::patch('/kasir/inactivate/{id}', [HomeController::class, 'inactivate']);
 
 Route::get('/instock', [StockController::class, 'instock']);
+
+Route::delete('/instock/delete/{id}', [StockController::class, 'instockDelete']);
+
+Route::get('/outstock', [StockController::class, 'outstock']);
+
+Route::delete('/outstock/delete/{id}', [StockController::class, 'outstockDelete']);
+
+Route::get('/outstock/detail/{id}', [StockController::class, 'detailoutstock']);
 
 Route::get('/instock/print', [StockController::class, 'printInstock']);
 

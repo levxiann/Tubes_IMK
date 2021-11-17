@@ -16,6 +16,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{url('/outstock')}}" class="nav-link py-3 border-bottom @if(session()->has('menu') && session()->get('menu') == 'outstock') bg-light @else text-white @endif" title="Penjualan" data-bs-toggle="tooltip" data-bs-placement="right">
+                <span class="far fa-file-invoice"></span>
+                </a>
+            </li>
+            <li>
                 <a href="{{url('/discount')}}" class="nav-link py-3 border-bottom @if(session()->has('menu') && session()->get('menu') == 'discount') bg-light @else text-white @endif" title="Diskon" data-bs-toggle="tooltip" data-bs-placement="right">
                     <span class="far fa-percent"></span>
                 </a>

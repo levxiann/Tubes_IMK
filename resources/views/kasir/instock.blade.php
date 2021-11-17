@@ -24,11 +24,11 @@
             <div class="container-fluid">
 
                 <!-- Alert -->
-                @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Sukses!</strong> {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                        <strong>{{session('status')}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @endif
 
                 <div class="card mx-auto pull-right">
@@ -45,6 +45,7 @@
                                 <th scope="col">Nama Barang</th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">Tanggal Masuk</th>
+                                <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -54,6 +55,13 @@
                                         <td>{{$instock->stok->name}}</td>
                                         <td>{{$instock->stock}}</td>
                                         <td>{{date('d M Y', strtotime($instock->created_at))}}</td>
+                                        <td>
+                                            <form method="POST" action="{{url('instock/delete/'.$instock->id) }}" style="display: inline-block;">
+                                              @csrf
+                                              @method('DELETE')
+                                              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Hapus Data?')"><span class="far fa-trash-alt"></span> Hapus</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

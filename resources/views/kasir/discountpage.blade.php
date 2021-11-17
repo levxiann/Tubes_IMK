@@ -32,7 +32,7 @@
             <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
         </form>
     </div>
-    <div class="row justify-content-start">
+    <div id="stock" class="row justify-content-start">
         @foreach($products as $product)
         <div class="card col-lg-3 col-6 col-md-3">
             <div class="card border-0" style="width: 15rem; border-radius: 5px;">

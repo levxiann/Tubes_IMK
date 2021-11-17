@@ -15,12 +15,19 @@
 </head>
 <body class="bg-light">
     <div class="container ms-3 mt-3">
-        <h2 class="text-header">Struk</h2>
-        <h5 class="text-header">Toko Serba Ada</h5>
-        <div>
-            Invoice : {{$printPayment->id}}<br>
-            Tanggal : {{date('d M Y', strtotime($printPayment->updated_at))}}<br>
-        </div>
+       <div class="col-12">
+            <div>
+                <h2 class="text-header">Struk</h2>
+                <h5 class="text-header">Toko Serba Ada</h5>
+                Jl. Pukat VIII No.27, Medan<br>
+                0852-9786-2869<br><br>
+            </div>
+            <div>
+                Invoice : {{$printPayment->id}}<br>
+                Tanggal : {{date('D, d M Y H:i:s', strtotime($printPayment->updated_at))}}<br>
+                Kasir   : {{$printPayment->user->name}}
+            </div>
+       </div>
         <table class="table table-stripped text-center">
             <thead>
               <tr>

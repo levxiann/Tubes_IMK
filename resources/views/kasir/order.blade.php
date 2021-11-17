@@ -22,9 +22,6 @@
             <h2 class="card-header mb-4">Struk</h2>
             
             <div class="float-end">
-                @if (Auth::user()->level == 1)
-                <a href="{{url('/invoice')}}" target="_blank" class="float-start btn btn-primary" style="display: inline-block"><span class="far fa-print" style="background: transparent"></span> Cetak Invoice</a>
-                @endif
                 <a href="{{url('/receipt')}}" class="float-end @if($count == 0) disabled @endif btn btn-success" style="display: inline-block"><span class="far fa-shopping-cart" style="background: transparent"></span> Selesai ({{$count}})</a>            
             </div>
             <form class="d-flex mt-3" action="{{url('/order/search')}}" method="GET">
