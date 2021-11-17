@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instock;
 use App\Models\Stock;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -282,6 +283,54 @@ class StockController extends Controller
         return redirect('stock')->with('success','Data berhasil dihapus!');
     }
 
+    public function close($id)
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','product');
+
+        $stock = Stock::findOrFail($id);
+
+        if($stock->status == 0)
+        {
+            return redirect('/stock');
+        }
+
+        Stock::where('id', $id)
+        ->update([
+            'status' => 0
+        ]);
+
+        return redirect('/stock')->with('success', 'Produk dimatikan');
+    }
+
+    public function open($id)
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','product');
+
+        $stock = Stock::findOrFail($id);
+
+        if($stock->status == 1)
+        {
+            return redirect('/stock');
+        }
+
+        Stock::where('id', $id)
+        ->update([
+            'status' => 1
+        ]);
+
+        return redirect('/stock')->with('success', 'Produk diaktifkan');
+    }
+
     public function print()
     {
         if(Auth::user()->level != 1)
@@ -324,6 +373,20 @@ class StockController extends Controller
         return view('kasir.instock', compact('instocks'));
     }
 
+    public function instockDelete($id)
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','instock');
+
+        Instock::destroy($id);
+
+        return redirect('/instock')->with('status', 'Data Produk Masuk berhasil dihapus');
+    }
+
     public function printInstock()
     {
         $instocks = Instock::all();
@@ -331,5 +394,47 @@ class StockController extends Controller
         $pdf = PDF::loadView('kasir.cetakInstock', compact('instocks'));
      
         return $pdf->stream('produk_masuk.'.date('d-M-Y').'.pdf');
+    }
+
+    public function outstock()
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','outstock');
+
+        $outstocks = Payment::where('status', 1)->orderBy('updated_at', 'DESC')->paginate(10);
+
+        return view('kasir.outstock', compact('outstocks'));
+    }
+
+    public function detailoutstock($id)
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','outstock');
+
+        $outstocks = Payment::findOrFail($id);
+
+        return view('kasir.detailoutstock', compact('outstocks'));
+    }
+
+    public function outstockDelete($id)
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','outstock');
+
+        Payment::destroy($id);
+
+        return redirect('/outstock')->with('status', 'Data Penjualan berhasil dihapus');
     }
 }

@@ -16,7 +16,8 @@ class Stock extends Model
         'wholesale_price',
         'wholesale_quantity',
         'stock',
-        'image'
+        'image',
+        'status'
     ];
 
     protected $table = 'stocks';

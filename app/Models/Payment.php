@@ -21,4 +21,9 @@ class Payment extends Model
     {
         return $this->hasMany(Receipt::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

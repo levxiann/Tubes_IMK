@@ -68,7 +68,7 @@
                       <th>Harga Grosir</th>
                       <th>Satuan Grosir</th>
                       <th>Stok</th>
-                      <th colspan="4">Action</th>
+                      <th colspan="5">Action</th>
                     </tr>
                   </thead>
                   <tbody style="vertical-align: middle">
@@ -106,11 +106,21 @@
                           @method('DELETE')
                           <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Hapus Data?')"><span class="far fa-trash-alt"></span> Hapus</button>
                         </form>
-                        @else
-                          <button type="button" class="btn btn-sm btn-danger" disabled><span class="far fa-trash-alt"></span> Hapus</button>
                         @endif
-                        
-                    </td>
+                        </td>
+                        <td>
+                          @if ($stock->status == 1)
+                          <form method="POST" action="{{url('stock/close/'.$stock->id) }}" style="display: inline-block;">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger"><span class="far fa-lock"></span> Matikan</button>
+                          </form>
+                          @else
+                          <form method="POST" action="{{url('stock/open/'.$stock->id) }}" style="display: inline-block;">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-success"><span class="far fa-lock-open"></span> Aktifkan</button>
+                          </form>
+                          @endif
+                        </td>
                     </tr>
                     @endforeach
                   </tbody>
