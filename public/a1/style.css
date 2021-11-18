@@ -98,6 +98,11 @@ body.dark .navbar {
     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff !important;
 }
 
+body.dark .forpass{
+    background-color: #212121 !important;
+    box-shadow: 13px 13px 20px #1c1c1c, -13px -13px 20px #262626 !important;
+}
+
 body.dark .login {
     background-color: #212121 !important;
     box-shadow: 13px 13px 20px #1c1c1c, -13px -13px 20px #262626 !important;
@@ -188,6 +193,10 @@ body.dark .login-pass i{
     border-radius: 25px;
     box-shadow: inset 6px 6px 6px #cbced1,
     inset -6px -6px 6px #fff;
+}
+
+body.dark .name{
+    box-shadow: inset 6px 6px 6px #1c1c1c, inset -6px -6px 6px #262626;
 }
 
 body.dark .password {
