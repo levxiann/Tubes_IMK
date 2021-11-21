@@ -195,7 +195,17 @@ class ReceiptController extends Controller
             return redirect('/order');
         }
 
-        Receipt::destroy($id);
+        $payment = $check->payment->receipts->count();
+
+        if($payment == 1)
+        {
+            
+            Payment::destroy($check->payment_id);
+        }
+        else
+        {
+            Receipt::destroy($id);
+        }
 
         return redirect('/receipt')->with('status', 'Orderan telah dihapus');
     }
