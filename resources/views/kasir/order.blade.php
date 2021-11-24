@@ -47,14 +47,14 @@
                                 <p class="card-text">{{$stock->stock}} tersedia</p>
                                 <p class="card-text"><small class="text-muted">
                                 @if ($stock->discount != NULL)
-                                    <del>Rp {{$stock->price}}</del> <b class="text-danger">{{$stock->discount->percentage}}%</b> => Rp {{((100 - $stock->discount->percentage) * $stock->price)/100}}
+                                    <del>Rp {{number_format($stock->price, 2, ',', '.')}}</del> <b class="text-danger">{{$stock->discount->percentage}}%</b> => Rp {{number_format(((100 - $stock->discount->percentage) * $stock->price)/100, 2, ',', '.')}}
                                 @else
-                                    Rp {{$stock->price}}
+                                    Rp {{number_format($stock->price, 2, ',', '.')}}
                                 @endif    
                                 </small></p>
                                 <p class="card-text"><small class="text-muted">
                                     @if ($stock->wholesale_price != NULL)
-                                        Rp {{$stock->wholesale_price}} untuk {{$stock->wholesale_quantity}} item
+                                        Rp {{number_format($stock->wholesale_price, 2, ',', '.')}} untuk {{$stock->wholesale_quantity}} item
                                     @else
                                         <br>
                                     @endif    

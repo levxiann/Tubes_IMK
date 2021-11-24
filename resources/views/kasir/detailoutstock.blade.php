@@ -41,12 +41,12 @@
                                 <th scope="row">{{$receipt->stock_id}}</th>
                                 <td>{{$receipt->stock->name}}</td>
                                 <td>{{$receipt->quantity}}</td>
-                                <td class="text-end">Rp {{$receipt->price}}</td>
+                                <td class="text-end">Rp {{number_format($receipt->price, 2, ',', '.')}}</td>
                             </tr>
                         @endforeach
                         <tr>
                             <td colspan="3" class="text-end">Total : </td>
-                            <td class="text-end">Rp {{$outstocks->total}}</td>
+                            <td class="text-end">Rp {{number_format($outstocks->total, 2, ',', '.')}}</td>
                         </tr>
                     </tbody>
                     </table>

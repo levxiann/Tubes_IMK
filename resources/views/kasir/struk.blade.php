@@ -43,20 +43,20 @@
                         <th scope="row">{{$receipt->stock_id}}</th>
                         <td>{{$receipt->stock->name}}</td>
                         <td>{{$receipt->quantity}}</td>
-                        <td class="text-end">Rp {{$receipt->price}}</td>
+                        <td class="text-end">Rp {{number_format($receipt->price, 2, ',', '.')}}</td>
                     </tr>
                 @endforeach
                 <tr>
                     <td colspan="3" class="text-end">Total : </td>
-                    <td class="text-end">Rp {{$printPayment->total}}</td>
+                    <td class="text-end">Rp {{number_format($printPayment->total, 2, ',', '.')}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-end">Bayar : </td>
-                    <td class="text-end">Rp {{$pay}}</td>
+                    <td class="text-end">Rp {{number_format($pay, 2, ',', '.')}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-end">Kembalian : </td>
-                    <td class="text-end">Rp {{$pay - $printPayment->total}}</td>
+                    <td class="text-end">Rp {{number_format($pay - $printPayment->total, 2, ',', '.')}}</td>
                 </tr>
             </tbody>
         </table>

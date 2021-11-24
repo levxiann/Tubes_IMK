@@ -353,6 +353,8 @@ class StockController extends Controller
             ] 
         ]);
         $dompdf->setHttpContext($contxt);
+
+        set_time_limit(600);
         
         $pdf = PDF::loadView('kasir.cetakProduk', compact('stocks'));
      

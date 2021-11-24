@@ -40,14 +40,14 @@
                     <td>{{$stock->description}}</td>
                     <td>
                       @if ($stock->discount != NULL)
-                        <del>Rp {{$stock->price}}</del> <b class="text-danger">{{$stock->discount->percentage}}%</b> => Rp {{((100 - $stock->discount->percentage) * $stock->price)/100}}
+                        <del>Rp {{number_format($stock->price, 2, ',', '.')}}</del> <b class="text-danger">{{$stock->discount->percentage}}%</b> => Rp {{number_format(((100 - $stock->discount->percentage) * $stock->price)/100, 2, ',', '.')}}
                       @else
-                        Rp {{$stock->price}}
+                        Rp {{number_format($stock->price, 2, ',', '.')}}
                       @endif
                     </td>
                     <td>
                       @if ($stock->wholesale_price != NULL)
-                        Rp {{$stock->wholesale_price}}
+                        Rp {{number_format($stock->wholesale_price, 2, ',', '.')}}
                       @endif
                     </td>
                     <td>
