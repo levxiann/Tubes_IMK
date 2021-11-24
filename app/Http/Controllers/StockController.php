@@ -393,6 +393,8 @@ class StockController extends Controller
     {
         $instocks = Instock::all();
 
+        set_time_limit(600);
+
         $pdf = PDF::loadView('kasir.cetakInstock', compact('instocks'));
      
         return $pdf->stream('produk_masuk.'.date('d-M-Y').'.pdf');

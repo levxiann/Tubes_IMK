@@ -302,6 +302,8 @@ class ReceiptController extends Controller
 
             $pay = $request->pay;
 
+            set_time_limit(600);
+
             $pdf = PDF::loadView('kasir.struk', compact('printPayment', 'printReceipt', 'pay'));
      
             return $pdf->stream('struk.'.$printPayment->id.'.pdf');
@@ -334,6 +336,8 @@ class ReceiptController extends Controller
         }
 
         $payments = Payment::where('status', 1)->get();
+
+        set_time_limit(600);
 
         $pdf = PDF::loadView('kasir.invoice', compact('payments'));
      
