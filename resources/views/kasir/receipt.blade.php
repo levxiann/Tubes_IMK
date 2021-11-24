@@ -83,7 +83,7 @@
 
                                 $total += $price;
                             @endphp
-                            Rp {{$price}}
+                            Rp {{number_format($price, 2, ',', '.')}}
                         </td>
                         <td class="text-start">
                             <form action="{{url('/order/delete/'.$receipt->id)}}" method="POST" class="ms-2 text-photo" onsubmit="return confirm('Anda Yakin?')" style="display: inline-block">
@@ -107,7 +107,7 @@
                 @endforeach
                 <tr>
                     <td colspan="3" class="text-end">Total : </td>
-                    <td class="text-end">Rp {{$total}}</td>
+                    <td class="text-end">Rp {{number_format($total, 2, ',', '.')}}</td>
                     <td></td>
                 </tr>
             </tbody>
