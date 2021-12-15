@@ -33,9 +33,9 @@
 
                 <div class="card mx-auto pull-right">
                     <div class="card-header">
-                        <p>
-                        <a href="{{url('/instock/print')}}" target="__blank" class="btn btn-secondary"><span class="far fa-print"></span> Cetak Produk Masuk</a>
-                        </p>
+                        <button type="button" class="btn btn-secondary ms-3 mb-2 mt-1" data-bs-toggle="modal" data-bs-target="#cetakMasukModal">
+                          <span class="far fa-print" style="background: transparent"></span> Cetak Produk Masuk
+                        </button>
                     </div>
                     <div class="card-body" id="stock">
                         <table class="table table-striped text-center">
@@ -80,4 +80,42 @@
       </div>
       <!-- /.content-wrapper -->
     
+<!-- Modal -->
+<div class="modal fade" id="cetakMasukModal" tabindex="-1" aria-labelledby="cetakMasukModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cetakMasukModalLabel">Cetak Produk Masuk</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action="{{url('/instock/print')}}" method="POST" class="ms-3 text-photo" target="__blank">
+              @csrf
+              <div class="form-group mb-3">     
+                  <label class="label" for="start">Mulai Tanggal : </label>
+                  <input id="start" name="start" type="date" class="form-control @error('start') is-invalid @enderror" placeholder="Masukkan Tanggal Mulai" value="{{ old('start') }}" autocomplete="number" autofocus>
+                  @error('start')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+              </div>
+              <div class="form-group mb-3">     
+                  <label class="label" for="finish">Sampai Tanggal : </label>
+                  <input id="finish" name="finish" type="date" class="form-control @error('finish') is-invalid @enderror" placeholder="Masukkan Tanggal Selesai" value="{{ old('finish') }}" autocomplete="number" autofocus>
+                  @error('finish')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+              </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-secondary"><span class="far fa-print" style="background: transparent"></span> Cetak</button>
+              </form>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

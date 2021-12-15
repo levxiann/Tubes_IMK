@@ -36,4 +36,9 @@ class Stock extends Model
     {
         return $this->hasMany(Instock::class);
     }
+
+    public function brokens()
+    {
+        return $this->hasMany(Broken::class);
+    }
 }

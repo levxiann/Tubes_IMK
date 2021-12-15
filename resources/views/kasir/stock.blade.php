@@ -87,7 +87,7 @@
                         </td>
                         <td>
                           @if ($stock->wholesale_price != NULL)
-                            Rp {{$stock->wholesale_price}}
+                            Rp {{number_format($stock->wholesale_price, 2, ',', '.')}}
                           @endif
                         </td>
                         <td>
@@ -112,7 +112,7 @@
                           @if ($stock->status == 1)
                           <form method="POST" action="{{url('stock/close/'.$stock->id) }}" style="display: inline-block;">
                             @csrf
-                            <button type="submit" class="btn btn-sm btn-danger"><span class="far fa-lock"></span> Matikan</button>
+                            <button type="submit" class="btn btn-sm btn-danger"><span class="far fa-lock"></span> Non-Aktifkan</button>
                           </form>
                           @else
                           <form method="POST" action="{{url('stock/open/'.$stock->id) }}" style="display: inline-block;">
