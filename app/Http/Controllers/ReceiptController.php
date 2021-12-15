@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Broken;
 use App\Models\Payment;
 use App\Models\Receipt;
 use Illuminate\Http\Request;
@@ -328,14 +329,19 @@ class ReceiptController extends Controller
         return redirect('/order')->with('status', 'Pembelian telah dibatalkan');
     }
 
-    public function invoice()
+    public function invoice(Request $request)
     {
         if(Auth::user()->level != 1)
         {
             return redirect('order');
         }
 
-        $payments = Payment::where('status', 1)->get();
+        $request->validate([
+            'start' => 'required|before:finish',
+            'finish' => 'required|before:tomorrow',
+        ]);
+
+        $payments = Payment::where('status', 1)->where('created_at', '>=' , date('Y-m-d H:i:s', strtotime($request->start)))->where('created_at', '<=' , date('Y-m-d H:i:s', strtotime('+1 day', strtotime($request->finish))))->get();
 
         set_time_limit(600);
 

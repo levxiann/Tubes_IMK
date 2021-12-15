@@ -46,7 +46,7 @@ Route::delete('/order/cancel/{id}', [ReceiptController::class, 'cancel']);
 
 Route::post('/pay', [ReceiptController::class, 'pay']);
 
-Route::get('/invoice', [ReceiptController::class, 'invoice']);
+Route::post('/invoice', [ReceiptController::class, 'invoice']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -116,7 +116,13 @@ Route::delete('/outstock/delete/{id}', [StockController::class, 'outstockDelete'
 
 Route::get('/outstock/detail/{id}', [StockController::class, 'detailoutstock']);
 
-Route::get('/instock/print', [StockController::class, 'printInstock']);
+Route::post('/instock/print', [StockController::class, 'printInstock']);
+
+Route::get('/broken', [StockController::class, 'broken']);
+
+Route::delete('/broken/delete/{id}', [StockController::class, 'brokenDelete']);
+
+Route::post('/broken/print', [StockController::class, 'brokenPrint']);
 
 Route::get('/logout',function(){
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Broken;
 use App\Models\Instock;
 use App\Models\Stock;
 use App\Models\Payment;
@@ -185,11 +186,18 @@ class StockController extends Controller
         $stock = Stock::findOrFail($id);
 
         $request->validate([
-            'stock' => 'required|integer|min:1|max:'.$stock->stock
+            'stock' => 'required|integer|min:1|max:'.$stock->stock,
+            'desc' => 'required|string|max:255'
         ]);
 
         $stock->stock = $stock->stock - $request->stock;
         $stock->save();
+
+        Broken::create([
+            'stock_id' => $stock->id,
+            'desc' => $request->desc,
+            'broken_stock' => $request->stock
+        ]);
 
         return redirect('stock')->with('success','Stok berhasil dikurang!');
     }
@@ -389,11 +397,21 @@ class StockController extends Controller
         return redirect('/instock')->with('status', 'Data Produk Masuk berhasil dihapus');
     }
 
-    public function printInstock()
+    public function printInstock(Request $request)
     {
-        $instocks = Instock::all();
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+        
+        $request->validate([
+            'start' => 'required|before:finish',
+            'finish' => 'required|before:tomorrow',
+        ]);
 
         set_time_limit(600);
+
+        $instocks = Instock::where('created_at', '>=' , date('Y-m-d H:i:s', strtotime($request->start)))->where('created_at', '<=' , date('Y-m-d H:i:s', strtotime('+1 day', strtotime($request->finish))))->get();
 
         $pdf = PDF::loadView('kasir.cetakInstock', compact('instocks'));
      
@@ -440,5 +458,56 @@ class StockController extends Controller
         Payment::destroy($id);
 
         return redirect('/outstock')->with('status', 'Data Penjualan berhasil dihapus');
+    }
+
+    public function broken()
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','broken');
+
+        $brokens = Broken::orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('kasir.broken', compact('brokens'));
+    }
+
+    public function brokenDelete($id)
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','broken');
+
+        Broken::destroy($id);
+
+        return redirect('/broken')->with('status', 'Data Produk Rusak berhasil dihapus');
+    }
+
+    public function brokenPrint(Request $request)
+    {
+        if(Auth::user()->level != 1)
+        {
+            return redirect('/order');
+        }
+
+        session()->put('menu','broken');
+
+        $request->validate([
+            'start' => 'required|before:finish',
+            'finish' => 'required|before:tomorrow',
+        ]);
+
+        $brokens = Broken::where('created_at', '>=' , date('Y-m-d H:i:s', strtotime($request->start)))->where('created_at', '<=' , date('Y-m-d H:i:s', strtotime('+1 day', strtotime($request->finish))))->get();
+
+        set_time_limit(600);
+        
+        $pdf = PDF::loadView('kasir.cetakRusak', compact('brokens'));
+     
+        return $pdf->stream('rusak.'.date('d-M-Y').'.pdf');
     }
 }

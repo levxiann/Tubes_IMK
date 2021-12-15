@@ -21,7 +21,7 @@
     <div class="form-group mb-3">
         <label for="stockAda">Stok</label>
         <input type="number" class="form-control" id="stockAda" value="{{$stocks->stock}}" name="stock" disabled>
-    </div>
+    </div> 
     <div class="form-group mb-3">
         <label for="stockRusak">Jumlah Stok Rusak</label>
         <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stockRusak" placeholder="Masukkan jumlah stok rusak" name="stock" value="{{old('stock')}}">
@@ -31,6 +31,15 @@
             </span>
         @enderror
     </div>    
+    <div class="form-group mb-3">
+        <label for="stockRusak">Keterangan</label>
+        <textarea type="text" class="form-control @error('desc') is-invalid @enderror" id="desc" placeholder="Masukkan keterangan" name="desc" rows="5">{{old('desc')}}</textarea>
+        @error('desc')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>  
     <div class="form-group mb-3">
         <a class="btn btn-light" href="{{url('/stock')}}">Cancel</a>
         <button type="submit" class="btn btn-primary confirm-button"><span class="far fa-save"></span> Save</button>
